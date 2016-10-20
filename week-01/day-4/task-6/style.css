@@ -1,0 +1,12 @@
+body {
+  margin-left: 45px;
+  margin-top: -16px;
+  font-size: 18px;
+  width: 480px;
+}
+h1 {font-size: 32px;}
+p {
+  border-left: 2px solid black;
+  padding-left: 20px;
+  width: 300px;
+}

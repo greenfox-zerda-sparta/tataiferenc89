@@ -1,0 +1,12 @@
+body {margin-left: 47px;}
+h1 {color: green}
+h2 {color: green}
+pre {
+  margin-left: -43px;
+  font-weight: bold;
+}
+#L {color: red;}
+#set {
+  color: blue;
+  font-style: italic;
+}
