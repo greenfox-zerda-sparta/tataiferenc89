@@ -8,16 +8,16 @@
 #ifndef AMOBA_H_
 #define AMOBA_H_
 
-#include "game_engine.h"
+#include "GameClass.h"
 #include "Gamelogic.h"
+#include "game_engine.h"
 
 
-class Amoba :public Game {
+class Amoba :public GameClass {
   Game_logic g;
 public:
   void init(Context& context);
   void render(Context& context);
-  void test_coordinate();
   virtual ~Amoba(){}
 };
 

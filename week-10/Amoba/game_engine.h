@@ -2,38 +2,42 @@
 #define GAME_ENGINE_H
 
 #include "SDL2/SDL.h"
+#include "SDL_Net.h"
 
 #include <map>
 #include <string>
 #include <vector>
 #include "Context.h"
+#include "GameClass.h"
 #include "Gamelogic.h"
-
-class Game {
-public:
-  virtual void init(Context& context) = 0;
-  virtual void render(Context& context) = 0;
-  virtual ~Game(){}
-};
+#include "ClientSocket.h"
 
 class GameEngine {
 private:
   Context* context;
-  Game* game;
+  GameClass* game;
   Game_logic* logic;
+  ClientSocket* cs;
   int x = 0;
   int y = 0;
+  int x2 = 0;
+  int y2 = 0;
+  char* message;
 public:
-  GameEngine(Game* g, unsigned int screen_width, unsigned int screen_height) {
+  GameEngine(GameClass* g, unsigned int screen_width, unsigned int screen_height) {
     context = new Context(screen_width, screen_height);
     logic = new Game_logic();
     game = g;
     game->init(*context);
+    cs = new ClientSocket("127.0.0.1",1234,512);
   }
   ~GameEngine() {
     delete context;
   }
   void run() {
+    SDLNet_Init();
+    cs->connectToServer();
+    string receivedMessage = "";
     SDL_Event event;
     int gameover = 0;
     int counter = 0;
@@ -46,8 +50,12 @@ public:
         else if(event.type == SDL_MOUSEBUTTONDOWN){
           context->mouse_down();
           SDL_GetMouseState(&x,&y);
+          cs->getUserInput(x/30,y/30);
+          message = cs->checkForIncomingMessages();
+          x2 = (int)message[0];
+          y2 = (int)message[1];
+          cout << x2 << " " << y2 << endl;
           context->set_mouse_coordinates(x,y);
-          std::cout << x/30 << " " << y/30 << " ";
           if(context->was_mouse_clicked() && counter % 2 == 0 && logic->get_map_vector()[x/30][y/30] == 0) {
             logic->get_map_vector()[x/30][y/30] = 1;
             counter++;

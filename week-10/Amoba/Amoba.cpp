@@ -19,13 +19,4 @@ void Amoba::render(Context& context) {
   g.play(context);
   context.render();
 }
-void Amoba::test_coordinate() {
-  std::vector<std::vector<int>> map = g.get_map_vector();
-  for(int i = 0; i < map.size(); i++) {
-    for(int j = 0; j < map.size(); j++) {
-      std::cout << map[i][j];
-    }
-    std::cout << std::endl;
-  }
-  std::cout << std::endl;
-}
+

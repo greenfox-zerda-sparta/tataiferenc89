@@ -11,8 +11,6 @@ Game_logic::Game_logic() {
   map = std::vector<std::vector<int> > (19,std::vector<int> (19,0));
 }
 
-void winner_is(int);
-
 void Game_logic::draw_map(Context& context) {
   for(unsigned int i = 0; i < 19; i++) {
     for(unsigned int j = 0; j < 19; j++) {
@@ -28,11 +26,12 @@ void Game_logic::draw_map(Context& context) {
     }
   }
 }
+
 std::vector< std::vector<int> >& Game_logic::get_map_vector() {
   return map;
 }
-void Game_logic::play(Context& context) {
 
+void Game_logic::play(Context& context) {
   if(context.was_mouse_clicked() && counter % 2 == 0 && map[context.get_mouse_coordinate_x()/30][context.get_mouse_coordinate_y()/30] == 0) {
     set_map_coordinates_to_X(context.get_mouse_coordinate_x()/30,context.get_mouse_coordinate_y()/30);
     counter++;
@@ -61,17 +60,9 @@ void Game_logic::set_map_coordinates_to_Y(int x,int y) {
   map[x][y] = 2;
 }
 
-bool Game_logic::test_in_a_row(int x_coordinate,int y_coordinate) {
-  int x = x_coordinate;
-  int y = y_coordinate;
-  std::cout<<x <<" "<< y << std::endl;
-  std::cout<<map[x][y] << std::endl;
-  return map[x_coordinate][y_coordinate] == 1 && map [x_coordinate-1][y_coordinate] == 1;
-}
-
 bool Game_logic::is_five_in_a_row(int x_coordinate,int y_coordinate) {
-  int x = x_coordinate;
-  int y = y_coordinate;
+  unsigned int x = x_coordinate;
+  unsigned int y = y_coordinate;
   int i = 1;
   while(i < 5 && x < map.size() - 1 && map[x][y] == map[x + 1][y] && map[x][y] != 0 ) {
     i++;
@@ -84,9 +75,10 @@ bool Game_logic::is_five_in_a_row(int x_coordinate,int y_coordinate) {
   }
   return i >= 5;
 }
+
 bool Game_logic::is_five_in_a_column(int x_coordinate,int y_coordinate) {
-  int x = x_coordinate;
-  int y = y_coordinate;
+  unsigned int x = x_coordinate;
+  unsigned int y = y_coordinate;
   int i = 1;
   while(i < 5 && y < map.size() - 1 && map[x][y] == map[x][y + 1] ) {
     i++;
@@ -99,9 +91,10 @@ bool Game_logic::is_five_in_a_column(int x_coordinate,int y_coordinate) {
   }
   return i >= 5;
 }
+
 bool Game_logic::is_five_in_diagonal_up(int x_coordinate,int y_coordinate) {
-  int x = x_coordinate;
-  int y = y_coordinate;
+  unsigned int x = x_coordinate;
+  unsigned int y = y_coordinate;
   int i = 1;
   while(i < 5 && x < map.size() - 1 && map[x][y] == map[x + 1][y + 1] ) {
     i++;
@@ -117,9 +110,10 @@ bool Game_logic::is_five_in_diagonal_up(int x_coordinate,int y_coordinate) {
   }
   return i >= 5;
 }
+
 bool Game_logic::is_five_in_digaonal_down(int x_coordinate,int y_coordinate) {
-  int x = x_coordinate;
-  int y = y_coordinate;
+  unsigned int x = x_coordinate;
+  unsigned int y = y_coordinate;
   int i = 1;
   while(i < 5 &&  x > 0 && y > 0 &&  map[x][y] == map[x - 1][y + 1] ) {
     i++;
@@ -135,6 +129,7 @@ bool Game_logic::is_five_in_digaonal_down(int x_coordinate,int y_coordinate) {
   }
   return i >= 5;
 }
+
 bool Game_logic::is_someone_won(int x, int y) {
   return is_five_in_a_row(x,y) || is_five_in_a_column(x,y) || is_five_in_diagonal_up(x,y) || is_five_in_digaonal_down(x,y);
 }
