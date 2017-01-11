@@ -13,11 +13,11 @@ void drawdimond(int number){
   }
   for(int i = number ; i > 0 ; i--){
     for(int j = 1 ; j <= number-i; j++){
-            cout << " ";
-          }
+        cout << " ";
+      }
     for(int k = 1 ; k <= (i*2)-1 ; k++){
-            cout << "*";
-          }
+        cout << "*";
+      }
     cout << endl;
   }
 }

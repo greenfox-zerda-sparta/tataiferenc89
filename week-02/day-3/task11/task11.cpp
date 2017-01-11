@@ -6,12 +6,12 @@ void sortAscending(int *array, int length){
 // Implement this function to sort the array in an ascending order.
 	int i,j,temp;
 	  for(j = 0 ; j<length ; j++){
-		for(i= 0 ; i<length ; i++){
-			if(array[i]>array[j]){
-			temp=array[j];
-			array[j]=array[i];
-			array[i]=temp;
-			}
+      for(i = 0 ; i<length ; i++){
+        if(array[i]>array[j]){
+        temp=array[j];
+        array[j]=array[i];
+        array[i]=temp;
+      }
 		}
 	}
 }
@@ -19,11 +19,11 @@ void sortDescending(int *array, int length){
 // Implement this function to sort the array in a descending order.
 	int i,j,temp;
 	  for(j = 0 ; j<length ; j++){
-		for(i= 0 ; i<length ; i++){
-			if(array[i]<array[j]){
-			temp=array[j];
-			array[j]=array[i];
-			array[i]=temp;
+      for(i = 0 ; i<length ; i++){
+        if(array[i]<array[j]){
+        temp=array[j];
+        array[j]=array[i];
+        array[i]=temp;
 			}
 		}
 	}

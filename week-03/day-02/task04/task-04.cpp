@@ -33,10 +33,10 @@ int main() {
   cout << "The richest pirate with a wooden leg is " << ritchest_woodenleg_pirate(priates,length) << "." ;
   return 0;
 }
-int pirates_gold(Pirate* array, int array_length){
+int pirates_gold(Pirate* array, int array_length) {
   int sum=0;
-  for(int i = 0; i < array_length; i++){
-    sum+=array[i].gold_count;
+  for(int i = 0; i < array_length; i++) {
+    sum += array[i].gold_count;
   }
   return sum;
 }
