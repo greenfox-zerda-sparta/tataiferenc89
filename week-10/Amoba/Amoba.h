@@ -10,12 +10,14 @@
 
 #include "GameClass.h"
 #include "Gamelogic.h"
-#include "game_engine.h"
+//#include "game_engine.h"
 
 
-class Amoba :public GameClass {
-  Game_logic g;
+class Amoba /*:public GameClass*/ {
+
 public:
+  Game_logic* g;
+  Amoba();
   void init(Context& context);
   void render(Context& context);
   virtual ~Amoba(){}

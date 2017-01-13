@@ -7,6 +7,10 @@
 
 #include "Amoba.h"
 
+Amoba::Amoba() {
+  this->g = new Game_logic();
+}
+
 void Amoba::init(Context& context) {
   context.load_file("empty.bmp");
   context.load_file("x.bmp");
@@ -15,8 +19,7 @@ void Amoba::init(Context& context) {
   context.load_file("y_won.bmp");
 }
 void Amoba::render(Context& context) {
-  g.draw_map(context);
-  g.play(context);
+  g->draw_map(context);
   context.render();
 }
 

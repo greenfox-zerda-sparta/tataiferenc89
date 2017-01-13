@@ -1,10 +1,9 @@
-#include "Amoba.h"
+#include "game_engine.h"
 
 using namespace std;
 
 int main(int argc, char *argv[]) {
-  Amoba amoba;
-  GameEngine engine(&amoba,570,570);
+  GameEngine engine(570,570);
   engine.run();
   return 0;
 }

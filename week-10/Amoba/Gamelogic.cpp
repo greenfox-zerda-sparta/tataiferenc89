@@ -32,12 +32,12 @@ std::vector< std::vector<int> >& Game_logic::get_map_vector() {
 }
 
 void Game_logic::play(Context& context) {
-  if(context.was_mouse_clicked() && counter % 2 == 0 && map[context.get_mouse_coordinate_x()/30][context.get_mouse_coordinate_y()/30] == 0) {
-    set_map_coordinates_to_X(context.get_mouse_coordinate_x()/30,context.get_mouse_coordinate_y()/30);
+  if(counter % 2 == 0 && map[context.get_mouse_coordinate_x()][context.get_mouse_coordinate_y()] == 0) {
+    set_map_coordinates_to_X(context.get_mouse_coordinate_x(),context.get_mouse_coordinate_y());
     counter++;
   }
-  else if(context.was_mouse_clicked() && counter % 2 != 0 && map[context.get_mouse_coordinate_x()/30][context.get_mouse_coordinate_y()/30] == 0) {
-    set_map_coordinates_to_Y(context.get_mouse_coordinate_x()/30,context.get_mouse_coordinate_y()/30);
+  else if(counter % 2 != 0 && map[context.get_mouse_coordinate_x()][context.get_mouse_coordinate_y()] == 0) {
+    set_map_coordinates_to_Y(context.get_mouse_coordinate_x(),context.get_mouse_coordinate_y());
     counter++;
   }
 }
@@ -50,6 +50,10 @@ void Game_logic::winner_is(Context& context, int counter) {
     context.draw_sprite("x_won.bmp",0,0,570,570);
   }
   context.render();
+}
+
+void Game_logic::set_map_coordinates_to_empty(int x,int y) {
+  map[x][y] = 0;
 }
 
 void Game_logic::set_map_coordinates_to_X(int x,int y) {
@@ -133,6 +137,7 @@ bool Game_logic::is_five_in_digaonal_down(int x_coordinate,int y_coordinate) {
 bool Game_logic::is_someone_won(int x, int y) {
   return is_five_in_a_row(x,y) || is_five_in_a_column(x,y) || is_five_in_diagonal_up(x,y) || is_five_in_digaonal_down(x,y);
 }
+
 void Game_logic::draw_matrix() {
   for(unsigned int i = 0; i < map.size(); i++) {
 
@@ -143,5 +148,3 @@ void Game_logic::draw_matrix() {
   }
   std::cout << std::endl;
 }
-
-

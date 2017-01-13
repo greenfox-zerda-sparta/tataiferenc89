@@ -22,6 +22,7 @@ public:
   void play(Context&);
   void winner_is(Context&,int);
   std::vector< std::vector<int> >& get_map_vector();
+  void set_map_coordinates_to_empty(int,int);
   void set_map_coordinates_to_X(int,int);
   void set_map_coordinates_to_Y(int,int);
   bool test_in_a_row(int,int);
